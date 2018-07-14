@@ -27,7 +27,7 @@ github_username:  krmckone
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: jekyll-athena
 plugins:
   - jekyll-feed
 
