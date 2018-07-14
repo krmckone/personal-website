@@ -8,5 +8,5 @@ push: _site/*
 	s3_website push
 
 build_push: _posts/* 404.html index.md _config.yml about.md _site/*
-	jekyll build
-	s3_website push
+	make build
+	make push

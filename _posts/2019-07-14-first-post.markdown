@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "This is the first post. Updated via test."
+title:  "This is the first post. Final make test."
 date:   2018-07-14 09:29:20 -0500
 categories: jekyll update
 ---
