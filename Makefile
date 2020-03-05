@@ -1,6 +1,10 @@
 build: _posts/* 404.html index.md _config.yml about.md
 	jekyll build
 
+clean: _site/* .jekyll-cache/* .sass-cache/*
+	rm -rf _site/* .jekyll-cache/* .sass-cache/*
+	rmdir _site .jekyll-cache .sass-cache
+
 serve: 
 	make build
 	jekyll serve
