@@ -1,9 +1,13 @@
 build: _posts/* 404.html index.md _config.yml about.md
-	jekyll build
+	bundle exec jekyll build
+
+clean: _site/* .jekyll-cache/* .sass-cache/*
+	rm -rf _site/* .jekyll-cache/* .sass-cache/*
+	rmdir _site .jekyll-cache .sass-cache
 
 serve: 
 	make build
-	jekyll serve
+	bundle exec jekyll serve
 	
 push_dryrun: _site/* 
 	s3_website push --dry-run

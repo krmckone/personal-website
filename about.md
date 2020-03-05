@@ -4,30 +4,24 @@ title: About the site
 permalink: /about/
 ---
 
-I made this site as a side project to get more motivated, involved, and vocal about learning in my free time. I write a bit by hand already in a notebook at home or at work, but that text never makes it anywhere where other people might be able to read it. I want to try to get my thoughts out there on the internet, and stay motivated to keep learning so I can bring my opinions and findings to a larger audience.
-
 ![Graph Pic]({{ "/assets/graph.jpg" | absolute_url }})
 
-I'm a student at the [University of Iowa](https://uiowa.edu/), studying [Computer Science](https://cs.uiowa.edu/) and [Mathematics](https://math.uiowa.edu/) as a double major. At the University, I work part time as a math tutor in the department's [Math Tutorial Lab](https://math.uiowa.edu/math-tutorial-lab), which is something I really enjoy and has helped kindle a broader interest in mathematics at the tutorial/teaching level. At the time of this writing, it's mid July 2018, and I'm about 7 months through an 8 month co-op opportunity with [Thomson Reuters](https://www.thomsonreuters.com/en.html), living and working right outside of the twin cities.
+I studied at the [University of Iowa](https://uiowa.edu/), receiving bachelor degrees in [Computer Science](https://cs.uiowa.edu/) and [Mathematics](https://math.uiowa.edu/). At the University, I worked part time as a math tutor in the department's [Math Tutorial Lab](https://math.uiowa.edu/math-tutorial-lab), which is something I really enjoy and has helped kindle a broader interest in mathematics at the tutorial/teaching level. I had an 8 month co-op opportunity with [Thomson Reuters](https://www.thomsonreuters.com/en.html), living and working right outside of the twin cities.
 
 ![AWS Logo]({{ "/assets/aws_logo.png" | absolute_url }})
 
-The group that I've been working in is fully cloud native. Several of our people are AWS solutions architect [certified](https://aws.amazon.com/certification/) at the associate level, with a handful at the professional level.  
+The group that I worked in is fully cloud native. Several of our people are AWS solutions architect [certified](https://aws.amazon.com/certification/) at the associate level, with a handful at the professional level.  
 
-At this job, I've learned a ton about current technologies that are big and relevant in business. AWS is an extremely powerful [platform](https://en.wikipedia.org/wiki/Platform_as_a_service) that I use every day at work. I've been absolutely blessed with the opportunities I've been given to dive into the platform, particularly with stories to write a ton of [AWS Lambda](https://aws.amazon.com/lambda/) functions in python. [Python](https://www.python.org/) is definitely my favorite language today, both for is great syntactic sugar and its usefulness as a super awesome general purpose language through its outstanding support. These lambdas made heavy use of public APIs exposed by [SaSS providers](https://en.wikipedia.org/wiki/Software_as_a_service) I've been the driver on demonstrating the usefulness of, particularly [Sumo Logic](https://www.sumologic.com/) and [DataDog](https://www.datadoghq.com/).
+At that job, I learned a ton about current technologies that are relevant for business. AWS is an extremely powerful [platform](https://en.wikipedia.org/wiki/Platform_as_a_service) that I got to use every day at work. It was an incredible opportunity to deep dive into the platform, particularly with stories to write a ton of [AWS Lambda](https://aws.amazon.com/lambda/) functions in python. I do my best to not be partial towards a particular language in general, however, [Python](https://www.python.org/) is certainly one that I still find myself going to more often than not. This probably both for its powerful and expressive syntax while garnering massive support from a generous community of contributors and maintainers. These lambdas made heavy use of public APIs exposed by [SaSS providers](https://en.wikipedia.org/wiki/Software_as_a_service). In addition, I was the driver on demonstrating the usefulness of certain SaSS providors, particularly [Sumo Logic](https://www.sumologic.com/) and [DataDog](https://www.datadoghq.com/).
+
+During my last year of college, I had the opportunity to jump into an application development project. Written in NodeJS/Angular, the tool directly supported the research of a group driving work in computational genetics at the U of Iowa. I deployed the application in AWS and is in active development and use.
+
+My current role is software engineer at the retailer [Target](https://target.com). I'm part of a team of more traditional sysadmins that utilize infrastructure as code to stand up the in-store compute infrastructure in every Target store. We primarily use [Chef](https://www.chef.io) as our configuration management tool, but are slowly transitioning to the client-less [Ansible](https://www.ansible.com).
+
+While I have currently found myself in a more IT-centric position, this is not my passion and hope to find myself in a role where I am substantially closer to the fundamentals of code and problem solving.
 
 One of the goals of this blog is to elaborate on what I've learned in utilizing these technologies at scale through best practices, and also how I'm using them for my own means at home at a much smaller scale. This website is hosted from [AWS S3](https://aws.amazon.com/s3/) as a static site, generated by [Jekyll](https://jekyllrb.com/). I automate the build and push to S3 process using [GNU Make](https://www.gnu.org/software/make/), and I use [Ubuntu](https://www.ubuntu.com) as my development environment.
 
 The large majority of my interests, however, exist outside of the business technology realm, and I want to use this blog as another way of expressing what I'm doing in those areas. Besides programming in particular, I'd say I'm much more interested in the process of [solving problems and puzzles](https://en.wikipedia.org/wiki/Problem_solving).
 
 ![Books]({{ "/assets/books.jpg" | absolute_url }})
-
-And outside of those topics that probably appear to be more on the dry side, I want to discuss my experience in how I learned to live away from home from the first time on my own real adventure, away from my college and, for the most part, away from family. This is what it feels like to really start writing your own story, where the structure is all yours. You have to stay motivated outside of work to reach out and get to know people. This might be the only way you can actually meet people and hang out, depending on what your work culture is. As an example snippet of part of the experience I've had here, I got baptized again as an adult here in Minneapolis, and I think that whole deal and experience is probably worth discussing.
-
-I'm extremely thankful for the opportunity to live away for a while, but I've also always looked forward to getting back to my studies at the University.
-
-So in addition, I also want to discuss stuff I have going on back in school when I move back in mid August of 2018. This is only about a month away at the time of this writing. I have probably about a year and a half of undergrad left, and I have some pretty strong graduate school interests.
-
-Finally, I hope to discuss just what's going on in life in general and how I'm doing my best to keep stuff simple and elegant. I'm really into reading books, wikipedia, reddit, staying up to date on what games are popular (except Fortnite), platforms like [Steam](https://en.wikipedia.org/wiki/Steam_(software)) and [GoG](https://en.wikipedia.org/wiki/GOG.com), and some of the politics behind what drives those organizations.
-
-If this interests you at all, stay tuned and I hope you can get something out of what I write and discuss.
