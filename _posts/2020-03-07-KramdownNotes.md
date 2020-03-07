@@ -26,7 +26,7 @@ References to the "first column"/"first character" of a block-level element line
 
 ### Line Wraps
 
-Hard wrapping may cause issues in some environments that utilize lightweight markdown syntax. Kramdown allows content such as paragraphs or blockquotes to be hard wrapped, that is, chopped up accross several lines. This may be called "lazy syntax" as the same level of indentation for lines following the first is not required.
+Hard wrapping (inserting literal line breaks) may cause issues in some environments that utilize lightweight markdown syntax. Kramdown allows content such as paragraphs or blockquotes to be hard wrapped, that is, chopped up accross several lines in a literal sense. This may be called "lazy syntax" as the same level of indentation for lines following the first is not required.
 
 Block-level elments that implement support for line wrappling exhibit line wrpaping under two conditions:
 
@@ -112,3 +112,166 @@ Refer to these specific contexts to understand the exceptions.
 ### Paragraphs
 
 Paragraphs serve as the most commonly used of the block-level elements. 1 or more lines of text in sequence will be considered one paragraph.
+The first line of the paragraph can be indented up to three spaces while any other line can have arbitrary level of indentation; this is due to paragraphs being a block-level element which has support for "lazy syntax". A paragraph will end when a definition list line is found or in any of the cases outlined in the line wrapping section.
+
+Separate two paragraphs by using one or more blank lines in a row. A new line or a line break in the Kramdown file does not indicate a line break in the output content (lazy syntax). End a line with two or more space characters or two backslash characters.
+
+For example:
+
+```kramdown
+This line had a line break
+here in the source file but still renders as one paragraph.
+```
+
+This line had a line break
+here in the source file but still renders as one paragraph.
+
+```kramdown
+This line had two spaces  
+here and will appear as a line break.
+```
+
+This line had two spaces  
+here and will appear as a line break.
+
+```kramdown
+This line has two backslash characters \\
+here at the previous line.
+```
+
+This line has two backslash characters \\
+here at the previous line.
+
+You can not use a line break on the last line of a paragraph and trailing/leading whitespace will be stripped from paragraph content.
+
+```kramdown
+   Here's what    whitespace looks like
+      in differen't place     s in a   para
+graph.
+```
+
+   Here's what    whitespace looks like
+      in differen't place     s in a   para
+graph.
+
+In general, paragraph text will be lenient and work the way that you expect in terms of whitespace and indentation.
+
+### Headers
+
+There exists in kramdown support for both Setext and atx headers; both can be used inside a kramdown document.
+
+#### Setext headers
+
+Setext must begin on a block boundary with the header text itself and a single line directly following with equal signs for a first level header or dashes for the second level. Only one dash or equal sign is necessary but more may aid in readability. Any leading or trailing whitespace is stripped from the header text but three spaces of indent is allowed. Align the equal signs or dashes with first column of document. 
+
+```kramdown
+Dashes for second level header
+--
+
+Equals for first level header
+==
+```
+
+Dashes for second level header
+--
+
+Equals for first level header
+==
+
+Setext headers start on block boundaries. So in the majority of cases, they will be preceeded by a blank line. A blank line is not required after a setext header. Best practice is typically to use a blank line after a setext header, however. This is slightly different from original Markdown syntax, which allows the absence of a blank line before a setext header. This is not allowed in kramdown to aid readability and reduce ambiguity.
+
+Setext headers are processed before horizontal rules, that is, you will need to use a `___` or other markdown syntax for horizontal rule instead of `---`.
+
+#### atx headers
+
+Atx style headers must start on a boundary block. The line must start with one or more hash characters directly followed by the header text. No spaces can appear before the hash characters. The number of hashes indicates the heading level; the lower the number of hashes, the bigger the header. The maximum number of hashes is six for the level six header, the smallest. All leading or trailing spaces are stripped from header text. Markdown allows you to omit the blank line before an atx header. Kramdown does not allow this.
+
+#### Specify header ID
+
+Use curly brackets on the same line of a header text to specify a header ID. This feature is from PHP Markdown Extra and Maruku. This is not a feature of standard Markdown
+
+### Blockquotes
+
+Start a blockquote by the `>` character, followed by zero or one spaces, and the blockquote content. Indent the `>` three spaces at the most. Blockquotes support line wrapping (lazy syntax), so any line breaks which follow the first `>` character will be a part of the same blockquote. The contents of a blockquote always block-level content. Then it is the case that text in a blockquote will be of the form of a paragraph.
+
+```kramdown
+> This is a blockquote with several
+line breaks
+      It's all part of the same
+> blockquote.
+>
+Use a blankline for a separate paragraph. The > on this line is optional due to support for line wrapping and since there is a > on the preceeding line.
+```
+
+> This is a blockquote with several
+line breaks
+      It's all part of the same
+> blockquote.
+>
+Use a blankline for a separate paragraph. The > on this line is optional due to support for line wrapping and since there is a > on the preceeding line.
+
+Since a blockquote is a block-level element, blockquotes can exist within blockquotes.
+
+> This is the blockquote which contains
+> > a blockquote which contains
+> > > a blockquote.
+
+This is accomplished by using one more `>` to indicate the increased level of nesting within the blockquote.
+
+```kramdown
+> This is the blockquote which contains
+> > a blockquote which contains
+> > > a blockquote.
+```
+
+All other block-level elements are supported within blockquotes as well.
+
+```kramdown
+> Regular paragraph text is here.
+>
+> ## A level two header is here
+>
+> ___
+> Horizontal rules work just fine. This is another paragraph
+with lazy syntax. Still the same paragraph in the same blockquote
+despite the hard wrap.
+>
+> ___
+>
+* List element is here
+* > Another list element which is itself a blockquote
+1. Numbered list
+2. within that nexted blockquote.
+3. Notice the hard line wrapping.
+4. It's all inside the list element inside the blockquote.
+>
+> > > ### A level three header nested three blockquotes deep
+```
+
+> Regular paragraph text is here.
+>
+> ## A level two header is here
+>
+> ___
+> Horizontal rules work just fine. This is another paragraph
+with lazy syntax. Still the same paragraph in the same blockquote
+despite the hard wrap.
+>
+> ___
+>
+* List element is here
+>
+* > Another list element which is itself a blockquote
+> >
+1. Numbered list
+2. within that nexted blockquote.
+3. Notice the hard line wrapping.
+4. It's all inside the list element inside the blockquote.
+>
+> > > ### A level three header nested three blockquotes deep
+
+The lazy syntax arguably hurts readability. Use the explicit `>` characters to be explicit in meaning.
+
+### Code Blocks
+
+
