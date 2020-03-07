@@ -274,4 +274,91 @@ The lazy syntax arguably hurts readability. Use the explicit `>` characters to b
 
 ### Code Blocks
 
+Code blocks do not allow the parser to modify text based on syntax rules of kramdown. That is, the contents of clode blocks are left as-is and can be used to reprsent verbatim program gists or code fragments.
+
+#### Code Blocks Standard Form
+
+Use four spaces or one tab to begin code block text. Code blocks support line wrapping and thus any further lines do not explicitly need to be indented in the same manner (lazy syntax). If the indentation is present in any succeeding lines, it is stripped and the contents is simply appended to the preceding block. Similarly, any wrapped code lines are appended to the preceding block. This is specific to kramdown; markdown syntax does not allow line wrapping in code blocks.
+
+```kramdown
+    Here is my code block, started by four spaces
+still the same code block despite no indentation
+```
+
+    Here is my code block, started by four spaces
+still the same code block despite no indentation
+
+Code blocks which follow eachother in direct sequence separated by a blank line are not interpreted as separate but are instead combined into one block. Use an EOB marker to separate the code blocks written in sequence.
+
+    Code block started by four spaces
+
+    Another code block started by four spaces after a newline.
+    But is actually a part of the first code block.
+
+#### Code Blocks Fenced Form
+
+Fenced syntax does not use indentation for code blocks. Start a fenced block with three or more `~` characters. Close the block with at least the same number of the opening `~` characters. Indentation is not necessary anywhere.
+
+```kramdown
+~~~
+Fenced code block is here using three ~'s
+~~~
+```
+
+If `~` characters are needed in the code block, use a larger sequence of `~` characters in the fences.
+
+~~~~~
+~~~~
+~~~
+The othermost fence has five ~'s
+~~~
+~~~~
+~~~~~
+
+Used fenced forms for copy and pasted code as indentation inside fenced blocks is not necessary.
+
+#### Code Blocks Language
+
+Use IAL to inform kramdown of the language used in the code block. This aids in syntax highlighting functionality.
+
+~~~~
+~~~
+def my_python_function(var):
+    print(f"in my_python_function {var}")
+    return "Done"
+~~~
+{: .language-python}
+~~~~
+
+~~~
+def my_python_function(var):
+    print(f"in my_python_function {var}")
+    return "Done"
+~~~
+{: .language-python}
+
+An alternate form is using the backtick syntax.
+
+````kramdown
+```python
+def my_python_function(var):
+    print(f"in my_python_function {var}")
+    return "Done"
+```
+````
+
+```python
+def my_python_function(var):
+    print(f"in my_python_function {var}")
+    return "Done"
+```
+
+Both render in the same manner.
+
+### Lists
+
+Ordered lists, unordered lists, and definition lists are supported by kramdown syntax.
+
+#### Ordered and Unordered Forms
+
 
