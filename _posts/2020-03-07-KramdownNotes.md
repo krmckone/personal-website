@@ -361,4 +361,66 @@ Ordered lists, unordered lists, and definition lists are supported by kramdown s
 
 #### Ordered and Unordered Forms
 
+Start an unordered list with a list marker. List markers are `+`, `-`, or `*` symbols and are interchangable/mixable in the syntax. Ordered lists markers are a number directly followed by a period character followed by one or more spaces. Follow the list marker with the list element content. Leading or trailing whitespace is stripped off of the list content to implement consistent alignment of list contents. Ordered lists always start at the numeral 1.
 
+```kramdown
+* Started with an "*"
++ Started with a "+"
+- Started with a "-"
+```
+
+```kramdown
+5. Number one
+2. Number two
+3. Number three
+6. Number four
+```
+
+* Started with an "*"
++ Started with a "+"
+- Started with a "-"
+
+1. Number one
+2. Number two
+3. Number three
+4. Number four
+
+Notice how the numbers specificed are arbitrary; kramdown handles the proper numbering in numbered lists automatically. Kramdown does not allow markers of unordered and ordered lists to be mixed. That is, kramdown uses the first marker type to specify the list and that type is the type of the list (either explicity ordered or unordered). So the above syntax generates one unordered list and one ordered list separately.
+
+The first list marker can be indented up to the three spaces. The column of the first non-whitespace character following the list marker is the indentation level required for the rest of the lines pertaining to the content of that list item. When no such character exists, standard indentation is four spaces or one tab character. Line wrapping allows lines of any indentation to directly follow a line of indentation. It is always the case though that a list item ends when a another list marker is encountered. Whitepsace is stripped off from the content of the list element all content of the list element is interpereted as block-level content. Then similarly to blockquote, any block element may be a list element. Any list markers which follow may be indented three spaces or the same number of spaces of the most recent list element minus one. The smaller number takes precedence.
+
+Avoid using different indentations for the same level of list elements as it hurts readability and meaning. Vanilla markdown allows indentation of the marker itself. However, this behavior is undefined in particular. Markdown additionally uses a finite number of spaces and tabs to give lines indentation in a list element.
+
+In general, indentation works the same in unordered and ordered lists.
+
+```kramdown
+* element 1
+* element 2
+This is a newline which is part of element 2 (lazy syntax)
+    * element 3.1
+      * element 3.1.1
+        * 1. Element 1 of 3.1.1.1
+      * element 3.1.2
+    * Element 3.2
+* Element 4
+* 
+1. * Unordered due to line wrapping into ordered with unordered     And an    indent that got stripped off
+```
+
+* element 1
+* element 2
+This is a newline which is part of element 2 (lazy syntax)
+    * element 3.1
+      * element 3.1.1
+        * 1. Element 1 of 3.1.1.1
+      * element 3.1.2
+    * Element 3.2
+* Element 4
+* 
+1. * Unordered due to line wrapping into ordered with unordered     And an    indent that got stripped off
+
+Remember that tabs in kramdown are multiples of four spaces. The tab character is automatically converted to corresponing space characters for computing indentation depth.
+
+*   Tab indented three spaces, including the `*` character, is four spaces overall for this line. Then it is the case that the list marker counts towards the indentation and not just whitespace, that is, the column number is significant.
+
+   1. The list marker is indented
