@@ -421,6 +421,67 @@ This is a newline which is part of element 2 (lazy syntax)
 
 Remember that tabs in kramdown are multiples of four spaces. The tab character is automatically converted to corresponing space characters for computing indentation depth.
 
-*   Tab indented three spaces, including the `*` character, is four spaces overall for this line. Then it is the case that the list marker counts towards the indentation and not just whitespace, that is, the column number is significant.
+```kramdown
+*   Tab indented three spaces, including the `*` character,
+    is four spaces overall for this line. Then it is the case that the
+    list marker counts towards the indentation and not just whitespace,
+    that is, the column number is significant.
 
-   1. The list marker is indented
+    1.    The list marker is indented here with another indent following
+the marker. Due to the indentation and lazy syntax, this is a
+    sublist of the above unordered list.
+
+```
+
+*   Tab indented three spaces, including the `*` character,
+    is four spaces overall for this line. Then it is the case that the
+    list marker counts towards the indentation and not just whitespace,
+    that is, the column number is significant.
+
+    1.    The list marker is indented here with another indent following
+the marker. Due to the indentation and lazy syntax, this is a
+    sublist of the above unordered list.
+
+Mix results may occur if you use both tabs and spaces in sequence with eachother. 4 spaces as tab spots is also by definition in kramdown and should always be the stanard in a document.
+
+List conent that follows a list marker is some text or a block-level element. Textual content is the most simple. The output is not wrapped in a paragraph HTML tag. However, if the first list content is followed by one or more blank lines, then it will be regarded as a paragraph. This will nearly always be the case when you are done with a list and move on to the next element in the document. Use an EOB marker to prevent the paragraph tag on the last list item if you want to leave a space after it.
+
+```kramdown
+* A couple list
+* Items side by side followed
+
+* By a list item which has a space above it
+
+* Another list item separated top and bottom
+
+* By a space and this bottom one has a space below it but also an EOB marker
+
+^
+```
+
+* A couple list
+* Items side by side followed
+
+* By a list item which has a space above it
+
+* Another list item separated top and bottom
+
+* By a space and this bottom one has a space below it but also an EOB marker
+
+^
+
+The last list item's content will get a paragraph tag if all other list items also contain a paragraph as the first element. Then it makes it so that typical lists work as expected.
+
+```kramdown
+* A very basic list with
+
+* Some bullet points just
+
+* with white space between them all
+```
+
+* A very basic list with
+
+* Some bullet points just
+
+* with white space between them all
