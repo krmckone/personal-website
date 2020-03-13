@@ -421,6 +421,184 @@ This is a newline which is part of element 2 (lazy syntax)
 
 Remember that tabs in kramdown are multiples of four spaces. The tab character is automatically converted to corresponing space characters for computing indentation depth.
 
-*   Tab indented three spaces, including the `*` character, is four spaces overall for this line. Then it is the case that the list marker counts towards the indentation and not just whitespace, that is, the column number is significant.
+```kramdown
+*   Tab indented three spaces, including the `*` character,
+    is four spaces overall for this line. Then it is the case that the
+    list marker counts towards the indentation and not just whitespace,
+    that is, the column number is significant.
 
-   1. The list marker is indented
+    1.    The list marker is indented here with another indent following
+the marker. Due to the indentation and lazy syntax, this is a
+    sublist of the above unordered list.
+
+```
+
+*   Tab indented three spaces, including the `*` character,
+    is four spaces overall for this line. Then it is the case that the
+    list marker counts towards the indentation and not just whitespace,
+    that is, the column number is significant.
+
+    1.    The list marker is indented here with another indent following
+the marker. Due to the indentation and lazy syntax, this is a
+    sublist of the above unordered list.
+
+Mix results may occur if you use both tabs and spaces in sequence with eachother. 4 spaces as tab spots is also by definition in kramdown and should always be the stanard in a document.
+
+List conent that follows a list marker is some text or a block-level element. Textual content is the most simple. The output is not wrapped in a paragraph HTML tag. However, if the first list content is followed by one or more blank lines, then it will be regarded as a paragraph. This will nearly always be the case when you are done with a list and move on to the next element in the document. Use an EOB marker to prevent the paragraph tag on the last list item if you want to leave a space after it.
+
+```kramdown
+* A couple list
+* Items side by side followed
+
+* By a list item which has a space above it
+
+* Another list item separated top and bottom
+
+* By a space and this bottom one has a space below it but also an EOB marker
+
+^
+```
+
+* A couple list
+* Items side by side followed
+
+* By a list item which has a space above it
+
+* Another list item separated top and bottom
+
+* By a space and this bottom one has a space below it but also an EOB marker
+
+^
+
+The last list item's content will get a paragraph tag if all other list items also contain a paragraph as the first element. Then it makes it so that typical lists work as expected.
+
+```kramdown
+* A very basic list with
+
+* Some bullet points just
+
+* with white space between them all
+```
+
+* A very basic list with
+
+* Some bullet points just
+
+* with white space between them all
+
+A list item's content can contain elements which are block-level. Therefore, you can always nest block elements in a list element.
+
+````kramdown
+1. Ordered list here
+2. > Block quote in the ordered list
+   > * Now we have an unordered list.
+3. Back to a normal element.
+4. ```kramdown
+   A code block as well.
+   > A block quote inside the code block inside the
+   > ordered list.
+   ```
+````
+
+1. Ordered list here
+2. > Block quote in the ordered list
+   > * Now we have an unordered list.
+3. Back to a normal element.
+4. ```kramdown
+   A code block as well.
+   > A block quote inside the code block inside the
+   > ordered list.
+   ```
+
+#### Definition Lists
+
+Definition lists are for assigning definitions to terms.
+
+Start a definition list with a normal paragraph directly followed by a line with a definition maker. A definition marker is a colon that can be optionally indented three spaces maximum. Following the definition makrer is at least one tab or one space. Then type the definition of the term.The definition marker and the previous paragraph may optionally be separated by a blank line. Whitespace is stripped from the beginning of the first defintion line. Each line of the previous paragraph is interpreted as a term and each line is separately contained as a span-level element.
+
+For example:
+
+```kramdown
+Python
+: A general-purpose, object-oriented, high level programming language with a reference implementation in C
+
+GCC
+: GNU Compiler Collection, a selection of compiler tools supported by GNU
+```
+
+Python
+: A general-purpose, object-oriented, high level programming
+language with a reference implementation in C
+
+GCC
+: GNU Compiler Collection, a selection of compiler tools
+supported by GNU
+
+I prefer to add bold text to the term element with my theme. This reduces ambiguity when term lists are rendered with small spacing.
+
+```kramdown
+**C#**
+: An object-oriented language developed and maintained by Microsoft. Runs on .NET common language infrastructure.
+
+**F#**
+: A language developed and maintained by Microsoft with functional-first features insipred by languages like standard ML and OCaml.
+
+**TypeScript**
+: Another language developed by Microsoft. A strongly typed, compiled superset of JavaScript. Utilized by the Angular project.
+```
+
+**C#**
+: An object-oriented language developed and maintained by Microsoft. Runs on .NET common language infrastructure.
+
+**F#**
+: A language developed and maintained by Microsoft with functional-first features insipred by languages like standard ML and OCaml.
+
+**TypeScript**
+: Another language developed by Microsoft. A strongly typed, compiled superset of JavaScript. Utilized by the Angular project.
+
+The deepest non-whitespace character after the definition marker is the column which corresponds the required indentation for the rest of the definition. Otherwise, indentation of four spaces or one tab is utilized.
+A list item ends when a line with the next definition marker is found. Indented lines which follow the above rule for indentation may then contain any amount of indentation (line wrapping).
+
+Indentation is cut from the definition element. Then the content of the definition is interpreted as block-level elements. When there is more than one definition element for the same term, the following definitions may be three space indented or the number of spaces used in the indentation of the last definition minus one (take the minimum of the two).
+
+```kramdown
+**First Term**
+: The first line of the definition. 
+  Realize that the first non-whitespace character of the definition 
+  is in column 3. then any other line for this definition must also 
+  start in column 3, i.e, indented 2 spaces.
+: Another definition for the first term.
+**Second Term**
+    : I've indented this one with a tab. The whitespace is stripped.
+        : I want to avoid this useless sort of indentation since it
+          hurts readability of the source and adds nothing to the output.
+```
+
+**First Term**
+: The first line of the definition. 
+  Realize that the first non-whitespace character of the definition 
+  is in column 3. then any other line for this definition must also 
+  start in column 3, i.e, indented 2 spaces.
+: Another definition for the first term.
+**Second Term**
+    : I've indented this one with a tab. The whitespace is stripped.
+        : I want to avoid this useless sort of indentation since it
+          hurts readability of the source and adds nothing to the output.
+
+Avoid using haphazard indentation in the definition lists. It is not needed and using indents that are unclear in meaning hurts readability.
+
+A definition is made of block-level elements. When it is not coming after a blank line, the definition will be regular paragraph text.
+
+```kramdown
+```
+
+**First Term**
+: There is no blank line before this line in the definition.
+
+  > Here is a block-level element, however, contained in the definition.
+    It is indented the correct number of spaces (2).
+
+: This definition does have a blank line before it. Therefore, it is a paragraph.
+
+### Tables
+
