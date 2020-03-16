@@ -590,15 +590,194 @@ Avoid using haphazard indentation in the definition lists. It is not needed and 
 A definition is made of block-level elements. When it is not coming after a blank line, the definition will be regular paragraph text.
 
 ```kramdown
-```
-
 **First Term**
 : There is no blank line before this line in the definition.
 
-  > Here is a block-level element, however, contained in the definition.
+  > Here is a block-level element. However, notice it is contained in the definition.
+    It is indented the correct number of spaces (2).
+
+: This definition does have a blank line before it. Therefore, it is a paragraph.
+```
+**First Term**
+: There is no blank line before this line in the definition.
+
+  > Here is a block-level element. However, notice it is contained in the definition.
     It is indented the correct number of spaces (2).
 
 : This definition does have a blank line before it. Therefore, it is a paragraph.
 
 ### Tables
 
+Table syntax in Kramdown is different than that of original Markdown. It is closely based on PHP Markdown
+Extra syntax.
+
+Kramdown tables are for collecting data in a form in which HTML syntax is too heavy. Kramdown supports
+simple ASCII-formatted data and outputs HTML table syntax.
+
+Leading pipes are optional. If the line that starts a table contains the pipe character as the first character,
+then all following leading pipes are ignored on any further lines in the table. If that is not the case, then
+leading pipe characters are used when computing the divisions of cells of the table.
+
+For different line types exist for tables in Kramdown.
+
+* Table Row
+
+  This row type is a line which contains the pipe character at least once and does not fall into any
+  other case of a line type, i.e., it is the most simple line type. This type is divided into cells of
+  of the table by using the pipe character. A trailing pipe character is ignored and is therefore optional
+  in the syntax for the table row. Pipe character literals must be escaped unless they appear in a kramdown
+  code span or an HTML tagged code element.
+
+  Use the same syntax for a table row to implement headers and footers. Each table cell can be at most one line
+  of content. Table cells are interpreted as span-level elements.
+
+  ```kramdown
+  | Header for Col 1 | Header for Col 2 | Header for Col 3
+  | Element 1 | Element 2 | Element 3
+  | Element 4 | Element 5 | Element 6 > No quotes here | 1. No lists here 2. None at all
+  ```
+
+  | Header for Col 1 | Header for Col 2 | Header for Col 3
+  | Element 1 | Element 2 | Element 3
+  | Element 4 | Element 5 | Element 6 > No quotes here | 1. No lists here 2. None at all
+
+* Separator Lines
+
+  Used for splitting a table body into several parts. It is a line which contains only pipe characters, dash
+  characters, plus symbols, and whitespace characters. A separator line must contain at least a dash and the
+  pipe character for it to be valid syntax. The pipe character and the plus symbol may be used to add
+  readability to the source document. Several separator lines in sequence are interpreted as one separator
+  line.
+
+  ```kramdown
+  ```
+
+  | header 1 | header 2 | header 3
+  |-
+  | This is right below the header separator | Second content | Tons of content
+  | What is next? | More stuff on this row | Last row last column
+
+  The first separator line to follow the first line of the table is regarded as the header separator line.
+  It may contain information that gives specific alignment definition to the header line. All rows above the
+  first separator line are regarded as header lines. The syntax of the header separator alignment definition
+  is as follows.
+
+  * An optional whitespace character directly followed by
+  * an optional colon directly followed by (NO WHITESPACE)
+  * one or more dash characters followed by (NO WHITESAPCE)
+  * an optional colon terminated by an optional space character
+
+    The colon characters are what sets the column alignment. No colon characters implies default column
+  alignment. A single colon character on the line that appears before the dash characters implies left
+  alignment. If there are colon characters before and after the dash characters, then the column will be
+  center aligned. One colon character only after the dashes implies right column alignment. Each alignment
+  definition will set the alignment for only ONE column. Therefore, multiple alignment definitions will be
+  needed if more than one column appears in the table. The default is left alignment.
+
+  ```kramdown
+  | Left aligned header | Right aligned header
+  | :- | -:
+  | Column 1 | Column 2
+
+  | Center aligned header | Center aligned header | Left aligned header
+  | :-: | :-: |
+  | Column 1 | Column 2 | Column 3
+
+  | Right aligned | Right aligned | Center aligned
+  | -: | -: | :-:
+  | Column 1 | Column 2 | Column 3
+  ```
+
+  | Left aligned header | Right aligned header
+  | :- | -:
+  | Column 1 | Column 2
+
+  | Center aligned header | Center aligned header | Left aligned header
+  | :-: | :-: |
+  | Column 1 | Column 2 | Column 3
+
+  | Right aligned | Right aligned | Center aligned
+  | -: | -: | :-:
+  | Column 1 | Column 2 | Column 3
+
+* Footer Separator Line
+
+  A footer separator fills the same purpose as a header line separator, just for the footer. The syntax is
+  similar; replace the dash characters with equal sign characters. This line may appear only once in a table.
+  The last appearance of a footer separator line is used in the table. Any separator line used after the footer
+  separator line are not interpreted as separator lines.
+
+You do not need to type the same number of columns in a separator line as there are actual columns in the
+table. Therefore, `|-` or `|=` are valid separator lines for header and footer, respectively.
+
+Therefore, tables consist of the following in order.
+
+* Optional separator line
+* Optional zero or more table rows
+* Optional Header separator line
+* one or more table rows, each potentially separated by separator lines to improve readability of doc
+* Optional footer separator line
+* Zero or more table rows
+* Optional terminating separator line
+
+The first line of the table may not be indented by more than three whitespace characters. Additionally,
+each line of the table must have at a minimum one non-escaped pipe character. Tables must also start and
+finish on block boundaries. Kramdown separates itself from the inspiration syntax of PHP Markdown Extra by
+not requiring a table header, allowing structure in the doc by using separator lines, allowing atable footer,
+and by needing to be separate from any other block-level element.
+
+This section concludes with a couple full-fledged examples to demonstrate the power of the Kramdown syntax with
+respect to tables.
+
+```kramdown
+|---------------------------+--------------------------+--------------------------+-------------------------|
+| Header 1, default aligned | Header 2, center aligned | Header 3, center aligned | Header 4, right aligned |
+|---------------------------+:-----------:-------------+--------------------------+-------------------------|
+| Column 1                  | Column 2                 | Column 3                 | Column 4                |
+| Third line                | Wow                      | Lots of spaces           | looks good in the doc   |
+|---------------------------+--------------------------+--------------------------+-------------------------|
+| Another portion separated | Column 2 again           | Column 3 coming at you   | Line 4 column 4         |
+| Another whole line        | Data is important        | Getting hard to maintain | This hard of syntax     |
+|===========================+==========================+==========================+=========================|
+| The row above was a       | Footer separator line so | This row is treated as a | footer                  |
+|---------------------------+--------------------------+--------------------------+-------------------------|
+```
+
+|---------------------------+--------------------------+--------------------------+-------------------------|
+| Header 1, default aligned | Header 2, center aligned | Header 3, center aligned | Header 4, right aligned |
+|---------------------------|:------------------------:|:------------------------:|------------------------:|
+| Column 1                  | Column 2                 | Column 3                 | Column 4                |
+| Third line                | Wow                      | Lots of spaces           | looks good in the doc   |
+|---------------------------+--------------------------+--------------------------+-------------------------|
+| Another portion separated | Column 2 again           | Column 3 coming at you   | Line 4 column 4         |
+| Another whole line        | Data is important        | Getting hard to maintain | This hard of syntax     |
+|===========================+==========================+==========================+=========================|
+| The row above was a       | Footer separator line so | This row is treated as a | footer                  |
+|---------------------------+--------------------------+--------------------------+-------------------------|
+
+This syntax looks good in the Kramdown document itself. However, it is not necessary for the output to be
+formatted correctly. The short-hand syntax is much more maintainable over time and is much faster to type.
+
+```kramdown
+|---
+| Header 1, default aligned | Header 2, center aligned | Header 3, center aligned | Header 4, right aligned
+| :- | :-: | :-: | -:
+| Column 1 | Column 2 | Column 3 | Column 4
+| Third line | Wow | Not many spaces | Doesn't look as good in the doc
+| Not separated by a line this time | Column 2 again | Column 3 coming at you | line 4 column 4
+| Another whole line | Data is important | Easier to maintain | less typing in the syntax
+|===
+| The row above | wasn't much of | a footer this | time around
+```
+
+|---
+| Header 1, default aligned | Header 2, center aligned | Header 3, center aligned | Header 4, right aligned
+| :- | :-: | :-: | -:
+| Column 1 | Column 2 | Column 3 | Column 4
+| Third line | Wow | Not many spaces | Doesn't look as good in the doc
+| Not separated by a line this time | Column 2 again | Column 3 coming at you | line 4 column 4
+| Another whole line | Data is important | Easier to maintain | less typing in the syntax
+|===
+| The row above | wasn't much of | a footer this | time around
+
+### Horizontal Rules
