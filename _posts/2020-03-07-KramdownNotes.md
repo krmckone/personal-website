@@ -781,3 +781,80 @@ formatted correctly. The short-hand syntax is much more maintainable over time a
 | The row above | wasn't much of | a footer this | time around
 
 ### Horizontal Rules
+
+Horizontal rules are used for visually creating separation between content. Make one by using three or more
+astericks, dash characters, or underscores without mixing the syntax. Each character may be separated
+optionally by spaces or tab characters on a line containing no other characters. Indent the first character
+by up to three whitespace characters.
+
+```kramdown
+_ __
+Look
+* * *
+at
+- - -
+all
+-    - -
+of
+the
+  - -   -
+options!
+* * *
+```
+
+_ __
+Look
+* * *
+at
+- - -
+all
+-    - -
+of
+the
+  - -   -
+options!
+* * *
+
+### Math Blocks
+
+Math blocks are not contained in the original Markdown syntax. The support for them in Kramdown comes from
+Maruku and Pandoc.
+
+Kramdown has built-in support for Latex syntax for writing mathematics. Both block-level and span-level
+elements are supported.
+
+Math blocks are started and ended with two dollar symbols `$$` and must begin and end on block boundaries.
+The end dollar symbols may be on the same line as the starting dollar symbols. The contents of the math block
+must be valid Latex syntax. The latex content will always be wrapped inside `\begin{displaymath} content \end{displaymath}` environment. However, this will not be the case if the content itself has a `\begin` statement.
+
+```kramdown
+$$
+\begin{equation}
+    \label{simple_equation}
+    \alpha = \sqrt{ \beta }
+    \sqrt{y^\pi}
+\end{equation}
+$$
+
+$$\sum_{x=1}^5 y^\alpha = \int_a^b f(x)$$
+```
+
+$$
+\begin{equation}
+    \label{simple_equation}
+    \alpha = \sqrt{ \beta }
+    \sqrt{y^\pi}
+\end{equation}
+$$
+
+$$\sum_{x=1}^5 y^\alpha = \int_a^b f_1(x)  \gamma
+  \\ a \neq b \: and \: b \lt \infty
+$$
+
+Escape the dollar signs if you do not want to start math statements. User \vert in proper Latex to avoid
+kramdown from parsing a table line in math that needs to use the vertical bar symbol.
+
+Using MathJax, Kramdown should support any valid Latex syntax in kramdown docs.
+
+### HTML Blocks
+
