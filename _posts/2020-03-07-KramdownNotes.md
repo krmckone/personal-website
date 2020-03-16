@@ -590,15 +590,82 @@ Avoid using haphazard indentation in the definition lists. It is not needed and 
 A definition is made of block-level elements. When it is not coming after a blank line, the definition will be regular paragraph text.
 
 ```kramdown
-```
-
 **First Term**
 : There is no blank line before this line in the definition.
 
-  > Here is a block-level element, however, contained in the definition.
+  > Here is a block-level element. However, notice it is contained in the definition.
+    It is indented the correct number of spaces (2).
+
+: This definition does have a blank line before it. Therefore, it is a paragraph.
+```
+**First Term**
+: There is no blank line before this line in the definition.
+
+  > Here is a block-level element. However, notice it is contained in the definition.
     It is indented the correct number of spaces (2).
 
 : This definition does have a blank line before it. Therefore, it is a paragraph.
 
 ### Tables
 
+Table syntax in Kramdown is different than that of original Markdown. It is closely based on PHP Markdown
+Extra syntax.
+
+Kramdown tables are for collecting data in a form in which HTML syntax is too heavy. Kramdown supports
+simple ASCII-formatted data and outputs HTML table syntax.
+
+Leading pipes are optional. If the line that starts a table contains the pipe character as the first character,
+then all following leading pipes are ignored on any further lines in the table. If that is not the case, then
+leading pipe characters are used when computing the divisions of cells of the table.
+
+For different line types exist for tables in Kramdown.
+
+* Table Row
+
+  This row type is a line which contains the pipe character at least once and does not fall into any
+  other case of a line type, i.e., it is the most simple line type. This type is divided into cells of
+  of the table by using the pipe character. A trailing pipe character is ignored and is therefore optional
+  in the syntax for the table row. Pipe character literals must be escaped unless they appear in a kramdown
+  code span or an HTML tagged code element.
+
+  Use the same syntax for a table row to implement headers and footers. Each table cell can be at most one line
+  of content. Table cells are interpreted as span-level elements.
+
+  ```kramdown
+  | Header for Col 1 | Header for Col 2 | Header for Col 3
+  | Element 1 | Element 2 | Element 3
+  | Element 4 | Element 5 | Element 6 > No quotes here | 1. No lists here 2. None at all
+  ```
+
+  | Header for Col 1 | Header for Col 2 | Header for Col 3
+  | Element 1 | Element 2 | Element 3
+  | Element 4 | Element 5 | Element 6 > No quotes here | 1. No lists here 2. None at all
+
+* Separator Lines
+
+  Used for splitting a table body into several parts. It is a line which contains only pipe characters, dash
+  characters, plus symbols, and whitespace characters. A separator line must contain at least a dash and the
+  pipe character for it to be valid syntax. The pipe character and the plus symbol may be used to add
+  readability to the source document. Several separator lines in sequence are interpreted as one separator
+  line.
+
+  ```kramdown
+  ```
+
+  | header 1 | header 2 | header 3
+  |-
+  | This is right below the header separator | Second content | Tons of content
+  | What is next? | More stuff on this row | Last row last column
+
+  The first separator line to follow the first line of the table is regarded as the header separator line.
+  It may contain information that gives specific alignment definition to the header line. All rows above the
+  first separator line are regarded as header lines. The syntax of the header separator alignment definition
+  is as follows. An optional whitespace character directory followed by an optional colon directly followed by
+  one or more dash characters followed by an optional colon terminated by an optional space character. The
+  colon characters are what sets the column alignment. No colon characters implies default column alignment.
+  A single colon character on the line that appears before the dash characters implies left alignment. If there
+  are colon characters before and after the dash characters, then the column will be center aligned. One colon
+  character only after the dashes implies right column alignment. Each alignment definition will set the
+  alignment for only one column. Therefore, multiple alignment definitions will be needed for multiple columns.
+
+  | Here's my header | part of the header
