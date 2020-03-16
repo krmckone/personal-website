@@ -781,3 +781,249 @@ formatted correctly. The short-hand syntax is much more maintainable over time a
 | The row above | wasn't much of | a footer this | time around
 
 ### Horizontal Rules
+
+Horizontal rules are used for visually creating separation between content. Make one by using three or more
+astericks, dash characters, or underscores without mixing the syntax. Each character may be separated
+optionally by spaces or tab characters on a line containing no other characters. Indent the first character
+by up to three whitespace characters.
+
+```kramdown
+_ __
+Look
+* * *
+at
+- - -
+all
+-    - -
+of
+the
+  - -   -
+options!
+* * *
+```
+
+_ __
+Look
+* * *
+at
+- - -
+all
+-    - -
+of
+the
+  - -   -
+options!
+* * *
+
+### Math Blocks
+
+Math blocks are not contained in the original Markdown syntax. The support for them in Kramdown comes from
+Maruku and Pandoc.
+
+Kramdown has built-in support for Latex syntax for writing mathematics. Both block-level and span-level
+elements are supported.
+
+Math blocks are started and ended with two dollar symbols `$$` and must begin and end on block boundaries.
+The end dollar symbols may be on the same line as the starting dollar symbols. The contents of the math block
+must be valid Latex syntax. The latex content will always be wrapped inside `\begin{displaymath} content \end{displaymath}` environment. However, this will not be the case if the content itself has a `\begin` statement.
+
+```kramdown
+$$
+\begin{equation}
+    \label{simple_equation}
+    \alpha = \sqrt{ \beta }
+    \sqrt{y^\pi}
+\end{equation}
+$$
+
+$$\sum_{x=1}^5 y^\alpha = \int_a^b f(x)$$
+```
+
+$$
+\begin{equation}
+    \label{simple_equation}
+    \alpha = \sqrt{ \beta }
+    \sqrt{y^\pi}
+\end{equation}
+$$
+
+$$\sum_{x=1}^5 y^\alpha = \int_a^b f_1(x)  \gamma
+  \\ a \neq b \: and \: b \lt \infty
+$$
+
+Escape the dollar signs if you do not want to start math statements. User \vert in proper Latex to avoid
+kramdown from parsing a table line in math that needs to use the vertical bar symbol.
+
+Using MathJax, Kramdown should support any valid Latex syntax in kramdown docs.
+
+There are tons of resources available for Latex syntax. [I prefer this as a solid reference](https://en.wikibooks.org/wiki/LaTeX/Basics).
+
+### HTML Blocks
+
+Vanilla Markdown requires HTML blocks to appear with zero indentation whatsoever. The HTML block also needs
+to be surrounded entirely by blank lines in regular Markdown. Kramdown does not have this restriction. Kramdown
+also allows Markdown syntax within HTML blocks.
+
+Start an HTML block by starting a line with a non-span HTML tag. You can also use a general XML closing or
+opening tag. These may be indented up to three spaces. Any span-level HTML tag will not start an HTML block in
+Kramdown.
+
+A tag's parsing is dependent on the tag and three potential ways it can be interpreted.
+The tags which fall under each condition will be provided below.
+
+* The HTML tag will be parsed as a raw HTML block.
+  * If the content is to be handled as raw HTML, only HTML or XML tags parsed from the start on
+    and the text will be interpreted as regular raw text until the corresponding closing tag is found or
+    the end of the document is reached.
+* The HTML content will be parsed as a block-level element
+  * If the contents of the tag is to be interpreted as surrounding block-level elements, the
+    contents will be processed by the block-level parser. All further tags will be parsed as block-level
+    elements until the corresponding end tag of the block-level element is found or the end of the document
+    is reached.
+* The HTML content will be parsed as a span-level element
+  * The content will be interpreted as span-level elements and all containing elements will be parsed as
+    span-level elements until the corresponding closing tag is found or the end of the document is reached.
+
+Kramdown parses all HTML block tags or XML tags as raw HTML blocks. This can be controlled by using the
+`markdown` html attribute.
+
+* `markdown="1"`
+  * The tag is parsed as a raw HTML
+* `markdown="0"`
+  * The default mechanism for parsing is used
+* `markdown="block"`
+  * The tag contents is parsed as block-level elements
+* `markdown="span"`
+  * The tag contents is parsed as span-level elements
+
+The HTML tags that are parsed as raw HTML are
+
+* script
+* style
+* math
+* option
+* textarea
+* pre
+* code
+* kbd
+* samp
+* var
+
+The HTML tags that are parsed as block-level elements are
+
+* applet
+* button
+* blockquote
+* body
+* colgroup
+* dd
+* div
+* dl
+* fieldset
+* form
+* iframe
+* li
+* map
+* noscript
+* object
+* ol
+* table
+* tbody
+* thead
+* tfoot
+* tr
+* td
+* ul
+
+The HTML tags that are parsed as span-level elements are
+
+* a
+* abbr
+* acronym
+* address
+* b
+* bdo
+* big
+* cite
+* caption
+* code
+* del
+* dfn
+* dt
+* em
+* h1 - h6
+* i
+* ins
+* kbd
+* label
+* legend
+* optgroup
+* p
+* pre
+* q
+* rb
+* rbc
+* rp
+* rt
+* rtc
+* ruby
+* samp
+* select
+* small
+* span
+* strong
+* sub
+* sup
+* th
+* tt
+* var
+
+Remember that span level elements do not start an HTML block.
+
+I generally do not want to use HTML elements inline in Markdown/Kramdown, so I do not take notes on the
+usage portions of the documentation.
+
+## Text Markup
+
+What follows are all span-level elements which may be utilized within block-level elements. They provide
+styling or functionality to certain portions of the text.
+
+Span-level elements without content are parsed as-is to the output of the document. That is, they do not become empty HTML elements in the output.
+
+### Links and Images
+
+Kramdown supports three different types of links
+
+#### Automatic Links
+
+Auto links simply utilize `<angle bracket syntax>` to produce a clickable link. The address text will be used
+as both the target and the text itself in the output.
+
+```kramdown
+Here's a link to <https://www.google.com> or even my site right here <https://kalebmckone.com>.
+```
+
+Here's a link to <https://www.google.com> or even my site right here <https://kalebmckone.com>.
+
+You can't specify different text in the output to represnt a link using auto links.
+
+#### Inline Links
+
+Inline links provide all information left-to-right with respect to the target URL and the output text used to
+represent the link. Use square brackets to represent the text immediately followed by the link surrounded in
+parentheses. The link in the parentheses may be succeeded by one space and a title for the link surrounded by
+quotes.
+
+```kramdown
+Here's a link to [google over there](https://www.google.com) or even [my site right here](https://kalebmckone.com "my site").
+```
+
+Here's a link to [google over there](https://www.google.com) or even [my site right here](https://kalebmckone.com "my site").
+
+The link text itself is treated in the same way as span-level text. You may not create nested links in the
+link text. Link text in square brackets may also be omitted entirely. That is, it is optional.
+
+#### Reference Links
+
+Reference links may reference link definitions to quickly create links with a particular text representations.
+
