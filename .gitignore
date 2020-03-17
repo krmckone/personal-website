@@ -3,3 +3,5 @@ _site
 .jekyll-metadata
 s3_website.yml
 .jekyll-cache
+code_examples
+.vscode
