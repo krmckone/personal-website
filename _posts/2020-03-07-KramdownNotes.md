@@ -1030,9 +1030,109 @@ Reference links may reference link definitions to quickly create links with a pa
 A link definition should exist somewhere in the document before using it as a reference.
 
 Use two sets of square brackets. The first set of the square brackets represents the link text. The
-second set contains the link URL. The link URL can not contain any closing bracket, is not case sensitive,
-and line breaks and tabs are changed to be spaces. Multiple spaces are squashed to one whitespace character.
-If the link URL is omitted, either by not providing the link in the square brackets or forgetting the square
-brackets altogether, the link text that is provided is converted to a link while removing all bad characters
-and changing whitespace characters for line breaks. When there exists a definition for the link in the
-identifier, a link will be made. Else there will be no link converted.
+second set contains the link identifer name. The link name can not contain any closing bracket, is not case
+sensitive, and line breaks and tabs are changed to be spaces. Multiple spaces are squashed to one whitespace
+character. If the link name is omitted, either by not providing the name in the square brackets or forgetting
+the square brackets altogether, the link text that is provided is converted to a link while removing all bad
+characters and changing whitespace characters for line breaks. When there exists a definition for the link in
+the identifier, a link will be made. Else there will be no link converted.
+
+```kramdown
+[mylink]: https://kalebmckone.com
+
+I want to use a defined link here [mylink] which has to be defined elsewhere. I want to use it again
+right [mylink] here as well. What is this one [mylink][] going to? What about [this one][mylink]?
+```
+
+[mylink]: https://kalebmckone.com
+
+I want to use a defined link here [mylink] which has to be defined elsewhere. I want to use it again
+right [mylink] here as well. What is this one [mylink][] going to? What about [this one][mylink]?
+
+#### Link Definitions
+
+Put link definitions anywhere in the document to enable their use in reference links. Use a set of square
+brackets to name the link, optionally indented by three spaces at the most. Directly follow the closing
+bracket with a colon and an optional space character. Place the link URL next, which must contain at least
+one non-whitespace character. Optionally surround the link URL with angle brackets. Optionally follow the
+link URL by one or more spaces and a title surrounded in quotes. The title can also be placed on the next
+line by itself. Original Markdown let the title by surrounded by parenthesis. This is not allowed in Kramdown.
+Escape the colon character if needed in regular text.
+
+#### Images
+
+Use syntax similar to that of links. Kramdown uses an exclamation character before the first square bracket.
+The link text becomes the alt text of the image link. Image links can be written inline or using the reference
+syntax.
+
+[my_image]: {{ "../assets/books.jpg" | absolute_url }}
+Here's an ![image from my assets]({{ "../assets/graph.jpg" | absolute_url }})
+Here is another ![image]({{ "../assets/books.jpg" | absolute_url }})
+Here's the image again using a reference ![my_image].
+
+```kramdown
+[my_image]: {{ "../assets/books.jpg" | absolute_url }}
+Here's an ![image from my assets]({{ "../assets/graph.jpg" | absolute_url }})
+Here is another ![image]({{ "../assets/books.jpg" | absolute_url }})
+Here's the image again using a reference ![my_image].
+```
+
+Note that since I use Jekyll to build my site, I use the `absolute_url` function to properly path the image
+assets.
+
+### Emphasis
+
+There are two sorts of emphasis in Kramdown: light and strong. Single asterisks or underscore characters
+are used for the light emphasis. Two asterisks or two underscores are use for strong emphasis. You may not
+directly follow the beginning emphasis symbol with a space and the ending symbol must not be preceded by
+a space. That is, the emphasis delimiters must be tight against the text itself.
+
+```kramdown
+*Light emphasis using asterisks.*
+_Light emphasis using the underscore._
+**Strong using asterisks.**
+__Strong using underscores.__
+```
+
+*Light emphasis using asterisks.*
+_Light emphasis using the underscore._
+**Strong using asterisks.**
+__Strong using underscores.__
+
+Asterisks may be inserted within a word to give emphasis on characters. This is not supported for the
+underscore syntax.
+
+```kramdown
+Wow I can put em*pha*si**s** on ind_ividual_ ch*arac*ters using _as_terisks but n**o**t under_sc_ores.
+```
+
+Wow I can put em*pha*si**s** on ind_ividual_ ch*arac*ters using _as_terisks but n**o**t under_sc_ores.
+
+Spaces that surround asterisks or underscores cause those characters to be interpreted in their literal form.
+Use the escape character to escape asterisks or underscores if you do not want to use spaces.
+
+### Code Spans
+
+Code spans are the span-level form of the code block element in Kramdown. Use a single ``` back tick
+character to begin and end the code span. This form has already been used plenty in this document.
+
+```kramdown
+I can use `<html>` in my `kramdown` docs wherever I want `specific` control. I can use the ``` to insert
+`python3 -m my_module.py` short code segments.
+```
+
+I can use `<html>` in my `kramdown` docs wherever I want `specific` control. I can use the ``` to insert
+`python3 -m my_module.py` short code segments.
+
+Similarly to code blocks, surround the span with more back ticks than one to use literal back ticks in the
+code span.
+
+```kramdown
+``I want to see ` a literal backtick``
+```
+
+``I want to see ` a literal backtick``
+
+This is as far as I want to write for these notes. There are a few other sections still in the official
+Kramdown docs worth reading through. However, I do not see myself utilizing that functionality very often
+if ever.
