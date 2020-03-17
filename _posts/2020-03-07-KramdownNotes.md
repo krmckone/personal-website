@@ -26,9 +26,9 @@ References to the "first column"/"first character" of a block-level element line
 
 ### Line Wraps
 
-Hard wrapping (inserting literal line breaks) may cause issues in some environments that utilize lightweight markdown syntax. Kramdown allows content such as paragraphs or blockquotes to be hard wrapped, that is, chopped up accross several lines in a literal sense. This may be called "lazy syntax" as the same level of indentation for lines following the first is not required.
+Hard wrapping (inserting literal line breaks) may cause issues in some environments that utilize lightweight markdown syntax. Kramdown allows content such as paragraphs or block quotes to be hard wrapped, that is, chopped up across several lines in a literal sense. This may be called "lazy syntax" as the same level of indentation for lines following the first is not required.
 
-Block-level elments that implement support for line wrappling exhibit line wrpaping under two conditions:
+Block-level elements that implement support for line wrapping exhibit line wrapping under two conditions:
 
 1. end of document is met (block boundary), block IAL, EOB marker line, or a blank line
 2. HTML block
@@ -59,14 +59,14 @@ The implies that <, >, and & may be used freely without manual escape characters
 
 When Kramdown syntax needs to be used in the literal sense, these characters do need to be manually escaped. For example, you would need to escape the backtick characters if you need their literal representation in the target content.
 
-\` This is not a code span \` because the backticks are escaped.
+\` This is not a code span \` because the back ticks are escaped.
 
 What follows is a list of all the characters that may be escaped in a Kramdown doc.
 
 ```
 \           backslash character
 .           period
-*           asterick
+*           asterisk
 _           underscore
 +           plus
 -           minus
@@ -86,7 +86,7 @@ $           dollar symbol
 
 ### Block Boundaries
 
-Block elements may have a start and/or ends, therefore, posessing block boundaries. Two cases pertain to block boundaries having effect:
+Block elements may have a start and/or ends, therefore, possessing block boundaries. Two cases pertain to block boundaries having effect:
 
 1. If an element which is a block-level element must start on a block boundary, it must come after a blank line, EOB marker, block IAL, or must itself be the first element.
 2. If an element which is a block-level element must end on a block boundary, it must be directly succeeded by a blank line, EOB marker, block IAL, or must itself be the last element.
@@ -146,12 +146,12 @@ You can not use a line break on the last line of a paragraph and trailing/leadin
 
 ```kramdown
    Here's what    whitespace looks like
-      in differen't place     s in a   para
+      in different place     s in a   para
 graph.
 ```
 
    Here's what    whitespace looks like
-      in differen't place     s in a   para
+      in different place     s in a   para
 graph.
 
 In general, paragraph text will be lenient and work the way that you expect in terms of whitespace and indentation.
@@ -178,7 +178,7 @@ Dashes for second level header
 Equals for first level header
 ==
 
-Setext headers start on block boundaries. So in the majority of cases, they will be preceeded by a blank line. A blank line is not required after a setext header. Best practice is typically to use a blank line after a setext header, however. This is slightly different from original Markdown syntax, which allows the absence of a blank line before a setext header. This is not allowed in kramdown to aid readability and reduce ambiguity.
+Setext headers start on block boundaries. So in the majority of cases, they will be preceded by a blank line. A blank line is not required after a setext header. Best practice is typically to use a blank line after a setext header, however. This is slightly different from original Markdown syntax, which allows the absence of a blank line before a setext header. This is not allowed in kramdown to aid readability and reduce ambiguity.
 
 Setext headers are processed before horizontal rules, that is, you will need to use a `___` or other markdown syntax for horizontal rule instead of `---`.
 
@@ -190,9 +190,9 @@ Atx style headers must start on a boundary block. The line must start with one o
 
 Use curly brackets on the same line of a header text to specify a header ID. This feature is from PHP Markdown Extra and Maruku. This is not a feature of standard Markdown
 
-### Blockquotes
+### Block quotes
 
-Start a blockquote by the `>` character, followed by zero or one spaces, and the blockquote content. Indent the `>` three spaces at the most. Blockquotes support line wrapping (lazy syntax), so any line breaks which follow the first `>` character will be a part of the same blockquote. The contents of a blockquote always block-level content. Then it is the case that text in a blockquote will be of the form of a paragraph.
+Start a blockquote by the `>` character, followed by zero or one spaces, and the blockquote content. Indent the `>` three spaces at the most. Block quotes support line wrapping (lazy syntax), so any line breaks which follow the first `>` character will be a part of the same blockquote. The contents of a blockquote always block-level content. Then it is the case that text in a blockquote will be of the form of a paragraph.
 
 ```kramdown
 > This is a blockquote with several
@@ -200,7 +200,7 @@ line breaks
       It's all part of the same
 > blockquote.
 >
-Use a blankline for a separate paragraph. The > on this line is optional due to support for line wrapping and since there is a > on the preceeding line.
+Use a blank line for a separate paragraph. The > on this line is optional due to support for line wrapping and since there is a > on the preceding line.
 ```
 
 > This is a blockquote with several
@@ -208,9 +208,9 @@ line breaks
       It's all part of the same
 > blockquote.
 >
-Use a blankline for a separate paragraph. The > on this line is optional due to support for line wrapping and since there is a > on the preceeding line.
+Use a blank line for a separate paragraph. The > on this line is optional due to support for line wrapping and since there is a > on the preceding line.
 
-Since a blockquote is a block-level element, blockquotes can exist within blockquotes.
+Since a blockquote is a block-level element, block quotes can exist within block quotes.
 
 > This is the blockquote which contains
 > > a blockquote which contains
@@ -224,7 +224,7 @@ This is accomplished by using one more `>` to indicate the increased level of ne
 > > > a blockquote.
 ```
 
-All other block-level elements are supported within blockquotes as well.
+All other block-level elements are supported within block quotes as well.
 
 ```kramdown
 > Regular paragraph text is here.
@@ -241,11 +241,11 @@ despite the hard wrap.
 * List element is here
 * > Another list element which is itself a blockquote
 1. Numbered list
-2. within that nexted blockquote.
+2. within that nested blockquote.
 3. Notice the hard line wrapping.
 4. It's all inside the list element inside the blockquote.
 >
-> > > ### A level three header nested three blockquotes deep
+> > > ### A level three header nested three block quotes deep
 ```
 
 > Regular paragraph text is here.
@@ -264,17 +264,17 @@ despite the hard wrap.
 * > Another list element which is itself a blockquote
 > >
 1. Numbered list
-2. within that nexted blockquote.
+2. within that nested blockquote.
 3. Notice the hard line wrapping.
 4. It's all inside the list element inside the blockquote.
 >
-> > > ### A level three header nested three blockquotes deep
+> > > ### A level three header nested three block quotes deep
 
 The lazy syntax arguably hurts readability. Use the explicit `>` characters to be explicit in meaning.
 
 ### Code Blocks
 
-Code blocks do not allow the parser to modify text based on syntax rules of kramdown. That is, the contents of clode blocks are left as-is and can be used to reprsent verbatim program gists or code fragments.
+Code blocks do not allow the parser to modify text based on syntax rules of kramdown. That is, the contents of code blocks are left as-is and can be used to represent verbatim program gists or code fragments.
 
 #### Code Blocks Standard Form
 
@@ -288,7 +288,7 @@ still the same code block despite no indentation
     Here is my code block, started by four spaces
 still the same code block despite no indentation
 
-Code blocks which follow eachother in direct sequence separated by a blank line are not interpreted as separate but are instead combined into one block. Use an EOB marker to separate the code blocks written in sequence.
+Code blocks which follow each other in direct sequence separated by a blank line are not interpreted as separate but are instead combined into one block. Use an EOB marker to separate the code blocks written in sequence.
 
     Code block started by four spaces
 
@@ -310,7 +310,7 @@ If `~` characters are needed in the code block, use a larger sequence of `~` cha
 ~~~~~
 ~~~~
 ~~~
-The othermost fence has five ~'s
+The outermost fence has five ~'s
 ~~~
 ~~~~
 ~~~~~
@@ -361,7 +361,7 @@ Ordered lists, unordered lists, and definition lists are supported by kramdown s
 
 #### Ordered and Unordered Forms
 
-Start an unordered list with a list marker. List markers are `+`, `-`, or `*` symbols and are interchangable/mixable in the syntax. Ordered lists markers are a number directly followed by a period character followed by one or more spaces. Follow the list marker with the list element content. Leading or trailing whitespace is stripped off of the list content to implement consistent alignment of list contents. Ordered lists always start at the numeral 1.
+Start an unordered list with a list marker. List markers are `+`, `-`, or `*` symbols and are interchangeable/mixable in the syntax. Ordered lists markers are a number directly followed by a period character followed by one or more spaces. Follow the list marker with the list element content. Leading or trailing whitespace is stripped off of the list content to implement consistent alignment of list contents. Ordered lists always start at the numeral 1.
 
 ```kramdown
 * Started with an "*"
@@ -385,9 +385,9 @@ Start an unordered list with a list marker. List markers are `+`, `-`, or `*` sy
 3. Number three
 4. Number four
 
-Notice how the numbers specificed are arbitrary; kramdown handles the proper numbering in numbered lists automatically. Kramdown does not allow markers of unordered and ordered lists to be mixed. That is, kramdown uses the first marker type to specify the list and that type is the type of the list (either explicity ordered or unordered). So the above syntax generates one unordered list and one ordered list separately.
+Notice how the numbers specified are arbitrary; kramdown handles the proper numbering in numbered lists automatically. Kramdown does not allow markers of unordered and ordered lists to be mixed. That is, kramdown uses the first marker type to specify the list and that type is the type of the list (either explicitly ordered or unordered). So the above syntax generates one unordered list and one ordered list separately.
 
-The first list marker can be indented up to the three spaces. The column of the first non-whitespace character following the list marker is the indentation level required for the rest of the lines pertaining to the content of that list item. When no such character exists, standard indentation is four spaces or one tab character. Line wrapping allows lines of any indentation to directly follow a line of indentation. It is always the case though that a list item ends when a another list marker is encountered. Whitepsace is stripped off from the content of the list element all content of the list element is interpereted as block-level content. Then similarly to blockquote, any block element may be a list element. Any list markers which follow may be indented three spaces or the same number of spaces of the most recent list element minus one. The smaller number takes precedence.
+The first list marker can be indented up to the three spaces. The column of the first non-whitespace character following the list marker is the indentation level required for the rest of the lines pertaining to the content of that list item. When no such character exists, standard indentation is four spaces or one tab character. Line wrapping allows lines of any indentation to directly follow a line of indentation. It is always the case though that a list item ends when a another list marker is encountered. Whitespace is stripped off from the content of the list element all content of the list element is interpreted as block-level content. Then similarly to blockquote, any block element may be a list element. Any list markers which follow may be indented three spaces or the same number of spaces of the most recent list element minus one. The smaller number takes precedence.
 
 Avoid using different indentations for the same level of list elements as it hurts readability and meaning. Vanilla markdown allows indentation of the marker itself. However, this behavior is undefined in particular. Markdown additionally uses a finite number of spaces and tabs to give lines indentation in a list element.
 
@@ -419,7 +419,7 @@ This is a newline which is part of element 2 (lazy syntax)
 * 
 1. * Unordered due to line wrapping into ordered with unordered     And an    indent that got stripped off
 
-Remember that tabs in kramdown are multiples of four spaces. The tab character is automatically converted to corresponing space characters for computing indentation depth.
+Remember that tabs in kramdown are multiples of four spaces. The tab character is automatically converted to corresponding space characters for computing indentation depth.
 
 ```kramdown
 *   Tab indented three spaces, including the `*` character,
@@ -429,7 +429,7 @@ Remember that tabs in kramdown are multiples of four spaces. The tab character i
 
     1.    The list marker is indented here with another indent following
 the marker. Due to the indentation and lazy syntax, this is a
-    sublist of the above unordered list.
+    sub list of the above unordered list.
 
 ```
 
@@ -440,11 +440,12 @@ the marker. Due to the indentation and lazy syntax, this is a
 
     1.    The list marker is indented here with another indent following
 the marker. Due to the indentation and lazy syntax, this is a
-    sublist of the above unordered list.
+    sub list of the above unordered list.
 
-Mix results may occur if you use both tabs and spaces in sequence with eachother. 4 spaces as tab spots is also by definition in kramdown and should always be the stanard in a document.
+Mix results may occur if you use both tabs and spaces in sequence with each other. 4 spaces as tab spots is
+also by definition in kramdown and should always be the standard in a document.
 
-List conent that follows a list marker is some text or a block-level element. Textual content is the most simple. The output is not wrapped in a paragraph HTML tag. However, if the first list content is followed by one or more blank lines, then it will be regarded as a paragraph. This will nearly always be the case when you are done with a list and move on to the next element in the document. Use an EOB marker to prevent the paragraph tag on the last list item if you want to leave a space after it.
+List content that follows a list marker is some text or a block-level element. Textual content is the most simple. The output is not wrapped in a paragraph HTML tag. However, if the first list content is followed by one or more blank lines, then it will be regarded as a paragraph. This will nearly always be the case when you are done with a list and move on to the next element in the document. Use an EOB marker to prevent the paragraph tag on the last list item if you want to leave a space after it.
 
 ```kramdown
 * A couple list
@@ -514,7 +515,7 @@ A list item's content can contain elements which are block-level. Therefore, you
 
 Definition lists are for assigning definitions to terms.
 
-Start a definition list with a normal paragraph directly followed by a line with a definition maker. A definition marker is a colon that can be optionally indented three spaces maximum. Following the definition makrer is at least one tab or one space. Then type the definition of the term.The definition marker and the previous paragraph may optionally be separated by a blank line. Whitespace is stripped from the beginning of the first defintion line. Each line of the previous paragraph is interpreted as a term and each line is separately contained as a span-level element.
+Start a definition list with a normal paragraph directly followed by a line with a definition maker. A definition marker is a colon that can be optionally indented three spaces maximum. Following the definition marker is at least one tab or one space. Then type the definition of the term.The definition marker and the previous paragraph may optionally be separated by a blank line. Whitespace is stripped from the beginning of the first definition line. Each line of the previous paragraph is interpreted as a term and each line is separately contained as a span-level element.
 
 For example:
 
@@ -541,20 +542,20 @@ I prefer to add bold text to the term element with my theme. This reduces ambigu
 : An object-oriented language developed and maintained by Microsoft. Runs on .NET common language infrastructure.
 
 **F#**
-: A language developed and maintained by Microsoft with functional-first features insipred by languages like standard ML and OCaml.
+: A language developed and maintained by Microsoft with functional-first features inspired by languages like standard ML and OCaml.
 
 **TypeScript**
-: Another language developed by Microsoft. A strongly typed, compiled superset of JavaScript. Utilized by the Angular project.
+: Another language developed by Microsoft. A strongly typed, compiled super set of JavaScript. Utilized by the Angular project.
 ```
 
 **C#**
 : An object-oriented language developed and maintained by Microsoft. Runs on .NET common language infrastructure.
 
 **F#**
-: A language developed and maintained by Microsoft with functional-first features insipred by languages like standard ML and OCaml.
+: A language developed and maintained by Microsoft with functional-first features inspired by languages like standard ML and OCaml.
 
 **TypeScript**
-: Another language developed by Microsoft. A strongly typed, compiled superset of JavaScript. Utilized by the Angular project.
+: Another language developed by Microsoft. A strongly typed, compiled super set of JavaScript. Utilized by the Angular project.
 
 The deepest non-whitespace character after the definition marker is the column which corresponds the required indentation for the rest of the definition. Otherwise, indentation of four spaces or one tab is utilized.
 A list item ends when a line with the next definition marker is found. Indented lines which follow the above rule for indentation may then contain any amount of indentation (line wrapping).
@@ -723,7 +724,7 @@ Therefore, tables consist of the following in order.
 The first line of the table may not be indented by more than three whitespace characters. Additionally,
 each line of the table must have at a minimum one non-escaped pipe character. Tables must also start and
 finish on block boundaries. Kramdown separates itself from the inspiration syntax of PHP Markdown Extra by
-not requiring a table header, allowing structure in the doc by using separator lines, allowing atable footer,
+not requiring a table header, allowing structure in the doc by using separator lines, allowing a table footer,
 and by needing to be separate from any other block-level element.
 
 This section concludes with a couple full-fledged examples to demonstrate the power of the Kramdown syntax with
@@ -783,7 +784,7 @@ formatted correctly. The short-hand syntax is much more maintainable over time a
 ### Horizontal Rules
 
 Horizontal rules are used for visually creating separation between content. Make one by using three or more
-astericks, dash characters, or underscores without mixing the syntax. Each character may be separated
+asterisks, dash characters, or underscores without mixing the syntax. Each character may be separated
 optionally by spaces or tab characters on a line containing no other characters. Indent the first character
 by up to three whitespace characters.
 
@@ -1005,7 +1006,7 @@ Here's a link to <https://www.google.com> or even my site right here <https://ka
 
 Here's a link to <https://www.google.com> or even my site right here <https://kalebmckone.com>.
 
-You can't specify different text in the output to represnt a link using auto links.
+You can't specify different text in the output to represent a link using auto links.
 
 #### Inline Links
 
@@ -1026,4 +1027,12 @@ link text. Link text in square brackets may also be omitted entirely. That is, i
 #### Reference Links
 
 Reference links may reference link definitions to quickly create links with a particular text representations.
+A link definition should exist somewhere in the document before using it as a reference.
 
+Use two sets of square brackets. The first set of the square brackets represents the link text. The
+second set contains the link URL. The link URL can not contain any closing bracket, is not case sensitive,
+and line breaks and tabs are changed to be spaces. Multiple spaces are squashed to one whitespace character.
+If the link URL is omitted, either by not providing the link in the square brackets or forgetting the square
+brackets altogether, the link text that is provided is converted to a link while removing all bad characters
+and changing whitespace characters for line breaks. When there exists a definition for the link in the
+identifier, a link will be made. Else there will be no link converted.
